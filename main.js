@@ -115,10 +115,14 @@ function move() {
         }
     };
 
+    // Если moveFlag == true, отнимаем у элемента класс figure
+
     if (moveFlag) {
         for (let i = 0; i < figureBody.length; i++) {
             figureBody[i].classList.remove('figure');
         };
+
+        // Затем создаем новый массив элементов, где по оси Y отнимаем единицу и снова присваиваем класс figure
 
         figureBody = [
             document.querySelector(`[posX = "${coordinates[0][0]}"][posY = "${coordinates[0][1] - 1}"]`),
@@ -132,13 +136,20 @@ function move() {
         }
     } else {
 
+        // Если moveFlag == false, то убираем у элемента класс figure и присваиваем класс set
+
         for (let i = 0; i < figureBody.length; i++) {
             figureBody[i].classList.remove('figure');
             figureBody[i].classList.add('set');
         }
+
+        // После создаем новый элемент
+
         create();
     }
 }
+
+    // Создаем движение с интервалом
 
 let interval = setInterval(() => {
     move();
@@ -146,15 +157,23 @@ let interval = setInterval(() => {
 
 let flag = true;
 
+// Создаем функцию, отвечающую за движение. 
+
 window.addEventListener('keydown', function (e) {
+
+    // Добавляем каждый элемент фигуры в переменную
     let coordinate1 = [figureBody[0].getAttribute('posX'), figureBody[0].getAttribute('posY')];
     let coordinate2 = [figureBody[1].getAttribute('posX'), figureBody[1].getAttribute('posY')];
     let coordinate3 = [figureBody[2].getAttribute('posX'), figureBody[2].getAttribute('posY')];
     let coordinate4 = [figureBody[3].getAttribute('posX'), figureBody[3].getAttribute('posY')];
 
+    // Функция новый координат
+    
     function getNewState(a) {
 
         flag = true;
+
+        // Массив с элементами, где по оси Х мы добавляем параметр 'a', который может быть единицей при нажатии клавиши вправо и минус единицей при нажатии клавиши влево
 
         figureNew = [
             document.querySelector(`[posX = "${+coordinate1[0] + a}"][posY = "${coordinate1[1]}"]`),
@@ -163,11 +182,15 @@ window.addEventListener('keydown', function (e) {
             document.querySelector(`[posX = "${+coordinate4[0] + a}"][posY = "${coordinate4[1]}"]`)
         ];
 
+        // Перебираем наш новый массив и ЕСЛИ квадрата с данными параметрами не существует ИИ если новый элемент содержит класс set, то движение по клавишам не происходит
+
         for (let i = 0; i < figureNew.length; i++) {
             if (!figureNew[i] || figureNew[i].classList.contains('set')) {
                 flag = false;
             }
         };
+
+        // Если движение возможно, то убираем у элемента класс figure, делаем элемент новым элементом(с новыми координатами) и присваем ему класс figure
 
         if (flag) {
             for (let i = 0; i < figureBody.length; i++) {
@@ -181,6 +204,8 @@ window.addEventListener('keydown', function (e) {
             };
         }
     };
+
+    // Логика движения: если влево, то аргумент а = -1, если вправо, то а = 1. Если вниз, то визуальное ускорение.
 
     if (e.keyCode == 37) {
         getNewState(-1);
