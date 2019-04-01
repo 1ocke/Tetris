@@ -26,7 +26,7 @@
 .excel {
     width: 50px;
     height: 50px;
-    border: 1px solid #cccccc;
+    border: 1px dotted #cccccc;
 }
 
 /* .figure, .set {
@@ -87,4 +87,36 @@ input {
     height: 100%;
     z-index: 2;
     background-color: #1e488c;
+}
+
+.color1 {
+    background-color: #5aa0ce;
+}
+
+.color2 {
+    background-color: #38c650;
+}
+
+.color3 {
+    background-color: #73b8d6;
+}
+
+.color4 {
+    background-color: #e3eb48;
+}
+
+.color5 {
+    background-color: #9a49eb;
+}
+
+.color6 {
+    background-color: #b2eb49;
+}
+
+.color7 {
+    background-color: #f5b934;
+}
+
+.color8 {
+    background-color: #e066a8;
 }

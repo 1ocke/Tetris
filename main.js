@@ -53,10 +53,10 @@ function startGame() {
     let x = 5,
         y = 15;
 
-    let mainArr = [[[0, 1], [0, 2], [0, 3], [[-1, 1], [0, 0], [1, -1], [2, -2]], [[1, -1], [0, 0], [-1, 1], [-2, 2]], [[-1, 1], [0, 0], [1, -1], [2, -2]], [[1, -1], [0, 0], [-1, 1], [-2, 2]]], [[1, 0], [0, 1], [1, 1], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]]], [[1, 0], [0, 1], [0, 2], [[0, 0], [-1, 1], [1, 0], [2, -1]], [[1, -1], [1, -1], [-1, 0], [-1, 0]], [[-1, 0], [0, -1], [2, -2], [1, -1]], [[0, -1], [0, -1], [-2, 0], [-2, 0]]], [[1, 0], [1, 1], [1, 2], [[0, 0], [0, 0], [1, -1], [-1, -1]], [[0, 0], [-1, 1], [-2, 2], [1, 1]], [[2, 0], [0, 0], [1, -1], [1, -1]], [[-2, 0], [1, -1], [0, 0], [-1, 1]]], [[1, 0], [2, 0], [1, 1], [[1, 0], [0, 1], [0, 1], [0, 1]], [[0, 0], [-1, 0], [-1, 0], [1, -1]], [[0, 0], [0, 0], [0, 0], [-1, 1]], [[-1, 0], [1, -1], [1, -1], [0, -1]]], [[1, 0], [-1, 1], [0, 1], [[-1, 0], [-2, 1], [1, 0], [0, 1]], [[1, 0], [2, -1], [-1, 0], [0, -1]], [[-1, 0], [-2, 1], [1, 0], [0, 1]], [[1, 0], [2, -1], [-1, 0], [0, -1]]], [[1, 0], [1, 1], [2, 1], [[1, 0], [-1, 1], [0, 0], [-2, 1]], [[-1, 0], [1, -1], [0, 0], [2, -1]], [[1, 0], [-1, 1], [0, 0], [-2, 1]], [[-1, 0], [1, -1], [0, 0], [2, -1]]]]
+    let mainArr = [[[0, 1], [0, 2], [0, 3], [[-1, 1], [0, 0], [1, -1], [2, -2]], [[1, -1], [0, 0], [-1, 1], [-2, 2]], [[-1, 1], [0, 0], [1, -1], [2, -2]], [[1, -1], [0, 0], [-1, 1], [-2, 2]]], [[1, 0], [0, 1], [1, 1], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0], [0, 0]]], [[1, 0], [0, 1], [0, 2], [[0, 0], [-1, 1], [1, 0], [2, -1]], [[1, -1], [1, -1], [-1, 0], [-1, 0]], [[-1, 0], [0, -1], [2, -2], [1, -1]], [[0, -1], [0, -1], [-2, 0], [-2, 0]]], [[1, 0], [1, 1], [1, 2], [[0, 0], [0, 0], [1, -1], [-1, -1]], [[0, 0], [-1, 1], [-2, 2], [1, 1]], [[2, 0], [0, 0], [1, -1], [1, -1]], [[-2, 0], [1, -1], [0, 0], [-1, 1]]], [[1, 0], [2, 0], [1, 1], [[1, 0], [0, 1], [0, 1], [0, 1]], [[0, 0], [-1, 0], [-1, 0], [1, -1]], [[0, 0], [0, 0], [0, 0], [-1, 1]], [[-1, 0], [1, -1], [1, -1], [0, -1]]], [[1, 0], [-1, 1], [0, 1], [[-1, 0], [-2, 1], [1, 0], [0, 1]], [[1, 0], [2, -1], [-1, 0], [0, -1]], [[-1, 0], [-2, 1], [1, 0], [0, 1]], [[1, 0], [2, -1], [-1, 0], [0, -1]]], [[1, 0], [1, 1], [2, 1], [[1, 0], [-1, 1], [0, 0], [-2, 1]], [[-1, 0], [1, -1], [0, 0], [2, -1]], [[1, 0], [-1, 1], [0, 0], [-2, 1]], [[-1, 0], [1, -1], [0, 0], [2, -1]]]];
 
     let colors = [
-        "#011923", "#000000", "#333333", "#555757", "#a0a0a0", "#bbbbbb"
+        "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8"
     ];
 
     let figureBody = 0;
@@ -70,7 +70,7 @@ function startGame() {
         }
 
         function randomColor() {
-            return Math.round(Math.random() * colors.length - 1);
+            return Math.round(Math.random() * (colors.length - 1));
         }
 
         rotate = 1;
@@ -85,8 +85,7 @@ function startGame() {
         ]
 
         for (let i = 0; i < figureBody.length; i++) {
-            figureBody[i].classList.add('figure');
-            figureBody[i].style.bgcolor = colors[currentColor];
+            figureBody[i].classList.add('figure', colors[currentColor]);
         }
     }
 
@@ -122,7 +121,7 @@ function startGame() {
 
         if (moveFlag) {
             for (let i = 0; i < figureBody.length; i++) {
-                figureBody[i].classList.remove('figure');
+                figureBody[i].classList.remove('figure', colors[currentColor]);
             };
 
             // Затем создаем новый массив элементов, где по оси Y отнимаем единицу и снова присваиваем класс figure
@@ -135,15 +134,15 @@ function startGame() {
             ];
 
             for (let i = 0; i < figureBody.length; i++) {
-                figureBody[i].classList.add('figure');
+                figureBody[i].classList.add('figure', colors[currentColor]);
             }
         } else {
 
             // Если moveFlag == false, то убираем у элемента класс figure и присваиваем класс set
 
             for (let i = 0; i < figureBody.length; i++) {
-                figureBody[i].classList.remove('figure');
-                figureBody[i].classList.add('set');
+                figureBody[i].classList.remove('figure', colors[currentColor]);
+                figureBody[i].classList.add('set', colors[currentColor]);
             }
 
             for (let i = 1; i < 15; i++) {
@@ -156,7 +155,7 @@ function startGame() {
                             score += 10;
                             input.value = `Ваши очки: ${score}`;
                             for (let m = 1; m < 11; m++) {
-                                document.querySelector(`[posX = "${m}"][posY = "${i}"]`).classList.remove('set');
+                                document.querySelector(`[posX = "${m}"][posY = "${i}"]`).classList.remove('set', "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8");
                             }
 
                             let set = document.querySelectorAll('.set');
@@ -164,13 +163,13 @@ function startGame() {
                             for (let s = 0; s < set.length; s++) {
                                 let setCoordinates = [set[s].getAttribute('posX'), set[s].getAttribute('posY')]
                                 if (setCoordinates[1] > i) {
-                                    set[s].classList.remove('set');
+                                    set[s].classList.remove('set', "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8");
                                     newSet.push(document.querySelector(`[posX = "${setCoordinates[0]}"][posY = "${setCoordinates[1] - 1}"]`));
                                 }
                             }
 
                             for (let a = 0; a < newSet.length; a++) {
-                                newSet[a].classList.add('set');
+                                newSet[a].classList.add('set', colors[currentColor]);
                             }
 
                             i--;
@@ -240,13 +239,13 @@ function startGame() {
 
             if (flag) {
                 for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.remove('figure');
+                    figureBody[i].classList.remove('figure', colors[currentColor]);
                 };
 
                 figureBody = figureNew;
 
                 for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.add('figure');
+                    figureBody[i].classList.add('figure', colors[currentColor]);
                 };
             }
         };
@@ -278,13 +277,13 @@ function startGame() {
 
             if (flag) {
                 for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.remove('figure');
+                    figureBody[i].classList.remove('figure', colors[currentColor]);
                 };
 
                 figureBody = figureNew;
 
                 for (let i = 0; i < figureBody.length; i++) {
-                    figureBody[i].classList.add('figure');
+                    figureBody[i].classList.add('figure', colors[currentColor]);
                 };
 
                 if (rotate < 4) {
