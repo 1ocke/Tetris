@@ -1,3 +1,4 @@
+// Hey everyone
 // Создаем модальное окно начала игры и скорость падения фигур.
 
 let overlay = document.querySelector('.overlay');
